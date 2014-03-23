@@ -1,0 +1,17 @@
+﻿<Window x:Class="HostedNetWPF.About"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		Title="About" Height="200" Width="420" Icon="Resources/icon_net_128.ico">
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="9*"/>
+			<ColumnDefinition Width="19*"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="9*"/>
+			<RowDefinition Height="14*"/>
+		</Grid.RowDefinitions>
+		<Label Content="Wi-Fi® HostNet" Grid.Column="1" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" FontSize="24"/>
+		<Label Content="Author: www.granak.sk" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+	</Grid>
+</Window>

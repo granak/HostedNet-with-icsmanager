@@ -4,13 +4,57 @@ using System.Net.NetworkInformation;
 using System.Windows.Forms;
 using NETCONLib;
 using IcsManagerLibrary;
+using System.ComponentModel;
 
 namespace IcsManagerGUI
 {
-    public partial class IcsManagerForm : Form
-    {
+    public partial class IcsManagerForm : Form, INotifyPropertyChanged
+	{
+		#region HostedNetInfo
 
-        public IcsManagerForm()
+		#region Fields
+		private string _infos = string.Empty;
+		private bool _icsApplied = false;
+		public event PropertyChangedEventHandler PropertyChanged;
+		#endregion
+
+		#region Properties
+		public string Infos
+		{
+			get
+			{
+				return _infos;
+			}
+			set
+			{
+				_infos += String.Format("{0}{1}", value, Environment.NewLine);
+				OnPropertyChanged("Infos");
+			}
+		}
+		public bool ICSApplied
+		{
+			get { return _icsApplied; }
+			set
+			{
+				_icsApplied = value;
+				OnPropertyChanged("ICSApplied");
+			}
+		}
+		#endregion
+
+		#region Methods
+		protected void OnPropertyChanged(string name)
+		{
+			PropertyChangedEventHandler handler = PropertyChanged;
+			if (handler != null)
+			{
+				handler(this, new PropertyChangedEventArgs(name));
+			}
+		}
+		#endregion
+		#endregion
+
+		public IcsManagerForm()
         {
             InitializeComponent();
         }
@@ -74,6 +118,7 @@ namespace IcsManagerGUI
 
         private void ButtonApply_Click(object sender, EventArgs e)
         {
+			Infos = "ICSManager: applying settings";
             var sharedConnectionItem = cbSharedConnection.SelectedItem as ConnectionItem;
             var homeConnectionItem = cbHomeConnection.SelectedItem as ConnectionItem;
             if ((sharedConnectionItem == null) || (homeConnectionItem == null))
@@ -87,7 +132,10 @@ namespace IcsManagerGUI
                 return;
             }
             IcsManager.ShareConnection(sharedConnectionItem.Connection, homeConnectionItem.Connection);
-            RefreshConnections();
+			RefreshConnections();
+			Infos = "ICSManager: refresh connections";
+			Infos = "ICSManager: done";
+			ICSApplied = true;
         }
 
         private void cbHomeConnection_SelectedIndexChanged(object sender, EventArgs e)

@@ -1,0 +1,18 @@
+﻿<Window x:Class="HostedNetWPF_BP.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		Title="Background processes" Height="220" Width="450" ResizeMode="NoResize">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="40"/>
+			<RowDefinition Height="35"/>
+			<RowDefinition Height="120"/>
+		</Grid.RowDefinitions>
+		<Label Content="Wait for background processes will be finished." Margin="10,10,10,0" VerticalAlignment="Top" Height="26"/>
+		<ProgressBar Height="13" Margin="10,10,10,0" Grid.Row="1" VerticalAlignment="Top" IsIndeterminate="True"/>
+		<Expander x:Name="ExpDetails" Header="Details" Grid.Row="2" Background="{x:Null}" BorderBrush="#FF007AE0" BorderThickness="0,1,0,0" Margin="10,10,10,0" ScrollViewer.VerticalScrollBarVisibility="Disabled" Collapsed="Expander_Collapsed" Expanded="Expander_Expanded" VerticalContentAlignment="Stretch" VerticalAlignment="Top" Height="96">
+			<TextBlock x:Name="TextBlockDetails" Margin="10,0" TextWrapping="Wrap" Text="" Height="65"/>
+		</Expander>
+
+	</Grid>
+</Window>

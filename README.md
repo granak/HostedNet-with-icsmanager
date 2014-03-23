@@ -1,10 +1,8 @@
-Internet Connection Sharing Manager
+HostedNet&Internet Connection Sharing Manager
 ===================================
 
-It is a simple command line tool for turning ICS on or off on Windows 7 and higher.
-
-I wrote it because the `netsh routing` command which could be used for this in Windows XP is not available in Windows 7.
-
+Created for sharing my internet connection from my notebook to my phone over wifi.
+I just hate ConeXXXXXXy steps to free users.
 
 Requirements
 ------------
@@ -13,20 +11,17 @@ Requirements
 * .NET Framework 4.0.
 
 
-Building
---------
-
-Run `build.cmd`.
-
-
 Usage
 -----
 
 All commands require administrative privileges.
 
 ---
-	
-    icsmanager info
+For HostedNet:
+	Open in VisualStudio and build HostedNetWPF project.
+
+For ICSManager:	
+	icsmanager info
 
 Display information about currently available connections:
 

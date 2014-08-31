@@ -1,58 +1,34 @@
-﻿<Window x:Class="HostedNetWPF.MainWindow"
+﻿<controls:MetroWindow x:Class="HostedNetWPF.MainWindow"
 		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-		Title="Wi-Fi® HostNet" Height="216.5" Width="482" ResizeMode="CanMinimize" Icon="Resources/icon_net_128.ico">
+		xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+		xmlns:pageTransitions="clr-namespace:WpfPageTransitions;assembly=WpfPageTransitions"
+		Title="HostedNet" Height="250" Width="425" ResizeMode="CanMinimize" Icon="Resources/icon_net_128.ico" GlowBrush="Orange" ShowIconOnTitleBar="False">
+	<controls:MetroWindow.RightWindowCommands>
+		<controls:WindowCommands>
+			<Button Click="LoginWindowButton_OnClick">
+				<StackPanel Orientation="Horizontal">
+					<Rectangle Width="20" Height="20" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+						<Rectangle.OpacityMask>
+							<VisualBrush Stretch="Fill" Visual="{StaticResource appbar_user}" />
+						</Rectangle.OpacityMask>
+					</Rectangle>
+					<TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="SSID/Password" />
+				</StackPanel>
+			</Button>
+			<Button Click="SettingsWindowButton_OnClick">
+				<StackPanel Orientation="Horizontal">
+					<Rectangle Width="20" Height="20" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+						<Rectangle.OpacityMask>
+							<VisualBrush Stretch="Fill" Visual="{StaticResource appbar_cog}" />
+						</Rectangle.OpacityMask>
+					</Rectangle>
+					<TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="settings" />
+				</StackPanel>
+			</Button>
+		</controls:WindowCommands>
+	</controls:MetroWindow.RightWindowCommands>
 	<Grid>
-		<Menu HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="474">
-			<MenuItem Header="Home" Height="29">
-				<MenuItem x:Name="MenuItem_Home_LoadSettings" Header="Load settings" HorizontalAlignment="Left" Click="MenuItem_Home_LoadSettings_Click"/>
-				<MenuItem x:Name="MenuItem_Home_SaveSettings" Header="Save settings" HorizontalAlignment="Left" Click="MenuItem_Home_SaveSettings_Click"/>
-				<Separator />
-				<MenuItem x:Name="MenuItem_Home_Launch" Header="Launch" HorizontalAlignment="Left" Click="Launch_MenuItem_Click">
-					<MenuItem.Icon>
-						<Image x:Name="Icon_MI_Launch" Width="16" Height="16" />
-					</MenuItem.Icon>
-				</MenuItem>
-				<Separator />
-				<MenuItem Header="Close" HorizontalAlignment="Left" Click="Close_MenuItem_Click"/>
-			</MenuItem>
-			<MenuItem Header="Help" >
-				<MenuItem Header="How to use..." Click="HTU_MenuItem_Click"/>
-				<Separator />
-				<MenuItem Header="About" Click="About_MenuItem_Click"/>
-			</MenuItem>
-		</Menu>
-		<Grid Margin="0,34,0,0">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="29*"/>
-				<ColumnDefinition Width="50*"/>
-			</Grid.ColumnDefinitions>
-			<Grid.RowDefinitions>
-				<RowDefinition Height="33*"/>
-				<RowDefinition Height="34*"/>
-				<RowDefinition Height="39*"/>
-				<RowDefinition Height="45*"/>
-			</Grid.RowDefinitions>
-
-			<Label Content="Set up your hosted network:&#xA;" Margin="10,0" BorderThickness="0,0,0,1" BorderBrush="#FF0069C1" Grid.ColumnSpan="2"/>
-			<Label Content="SSID" Margin="0,3,4,0" Grid.Row="1" ToolTip="Enter name for your hosted network" HorizontalAlignment="Right" Width="37" Height="26" VerticalAlignment="Top" />
-			<TextBox x:Name="SSID" Grid.Column="1" Margin="0,7,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="183" ToolTip="For example: &quot;Shared web&quot;" KeyUp="SSID_KeyUp" KeyboardNavigation.TabIndex="0"/>
-			<Label Content="Password" Margin="0,3,4,0" Grid.Row="2" ToolTip="Enter name for your hosted network" HorizontalAlignment="Right" Width="63" Height="26" VerticalAlignment="Top" />
-			<PasswordBox x:Name="Password" Grid.Column="1" HorizontalAlignment="Left" Margin="0,4,0,0" Grid.Row="2" Width="183" Height="25" VerticalAlignment="Top" KeyUp="Password_KeyUp" KeyboardNavigation.TabIndex="1"/>
-			<Border BorderBrush="#FF0069C1" BorderThickness="0,1,0,0" HorizontalAlignment="Left" Height="44" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Top" Width="454" Grid.ColumnSpan="2">
-				<Grid>
-					<Button x:Name="ResetButton" Content="Reset" HorizontalAlignment="Left" Margin="259,10,0,0" VerticalAlignment="Top" Width="90" Height="24" Click="ResetButton_Click"/>
-					<Button x:Name="LaunchButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Height="24" Margin="354,10,0,0" Click="LaunchButton_Click" KeyboardNavigation.TabIndex="3">
-						<Canvas x:Name="LaunchButton_Content" Height="16" Width="63" Margin="0">
-							<Image x:Name="UACImage" Height="16" Width="16" />
-							<Label x:Name="LaunchButton_Content_Label" Content="Launch" Height="16" Margin="20,0,0,0" Padding="0,0,0,0"/>
-						</Canvas>
-					</Button>
-				</Grid>
-			</Border>
-			<Label Content="min. 3 characters" Grid.Column="1" HorizontalAlignment="Left" Margin="188,3,0,0" Grid.Row="1" VerticalAlignment="Top" Width="101" Foreground="#FF8F8F8F"/>
-			<Label Content="min. 8 characters" Grid.Column="1" HorizontalAlignment="Left" Margin="188,3,0,0" Grid.Row="2" VerticalAlignment="Top" Width="101" Foreground="#FF8F8F8F"/>
-		</Grid>
-
+		<pageTransitions:PageTransition Name="PageTransition" TransitionType="SlideAndFade"/>
 	</Grid>
-</Window>
+</controls:MetroWindow>
